@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">GeoQuiz</string>
+    <string name="true_button">True</string>
+    <string name="false_button">False</string>
+    <string name="nextButton">Next</string>
+    <string name="leftButton">Prev</string>
+    <string name="question_Australia">Canberra is the capital of Australia</string>
+    <string name="question_Franica">Madrid is the capital of Francia</string>
+    <string name="question_Spain">Berlin is the capital of Spain</string>
+    <string name="question_Norway">Oslo is the capital of Norway</string>
+    <string name="question_Russia">Moscow is the capital of Russia</string>
+</resources>
