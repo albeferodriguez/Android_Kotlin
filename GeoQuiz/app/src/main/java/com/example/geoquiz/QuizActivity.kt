@@ -4,14 +4,17 @@ import android.media.Image
 import android.opengl.Visibility
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View.GONE
 import android.widget.Button
 import android.widget.ImageButton
 import android.widget.TextView
 import android.widget.Toast
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.ViewModelProviders
 import kotlinx.android.synthetic.main.activity_main.*
 
-class MainActivity : AppCompatActivity() {
+class QuizActivity : AppCompatActivity() {
 
     private lateinit var trueButton: Button
     private lateinit var falseButton: Button
@@ -19,20 +22,18 @@ class MainActivity : AppCompatActivity() {
     private lateinit var leftButton: ImageButton
     private lateinit var rightButton: ImageButton
 
-    private val questionList = listOf(
-        Question(R.string.question_Australia, true),
-        Question(R.string.question_Franica, false),
-        Question(R.string.question_Norway, true),
-        Question(R.string.question_Russia, true),
-        Question(R.string.question_Spain, false)
-    )
+    val provider: ViewModelProvider = ViewModelProvider(this)
 
-    private var currentIndex = 0
-    private var prevIndex = 0
+    val quizViewModel: QuizViewModel by lazy {
+        ViewModelProviders.of(this).get(QuizViewModel::class.java)
+        provider.get(QuizViewModel::class.java)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        Log.d("MainActivity", "Got a QuizViewModel: $quizViewModel")
 
         trueButton = findViewById<Button>(R.id.true_button)
         falseButton = findViewById<Button>(R.id.false_button)
@@ -51,29 +52,29 @@ class MainActivity : AppCompatActivity() {
         }
 
         rightButton.setOnClickListener {
-            currentIndex = (currentIndex + 1) % questionList.size
+            quizViewModel.currentIndex
             UpdateQuestion()
         }
         UpdateQuestion()
     }
 
-    fun UpdateQuestion() {
-        val questionTextResId = questionList[currentIndex].question
-        question.setText(questionTextResId)
-        currentIndex++
+    private fun UpdateQuestion() {
+    val questionResId = quizViewModel.currentQuestionText
+        question.setText(questionResId)
+        quizViewModel.increaseCurrentIndex()
     }
 
     fun getPrevQuestion(){
-        if(currentIndex - 1 >  0) {
-            val questionResId = questionList[currentIndex - 1].question
+        if(quizViewModel.currentIndex - 1 >  0) {
+            val questionResId = quizViewModel.currentQuestionText
             question.setText(questionResId)
         }
-        currentIndex -= 1
+        quizViewModel.decreaseCurrentIndex()
     }
 
     fun CheckAnswer(userAnswer: Boolean) {
 
-        val correctAnswer = questionList[currentIndex].correct
+        val correctAnswer = quizViewModel.currentQuestionAnswer
 
         if (userAnswer == correctAnswer)
             Toast.makeText(this, "Correct", Toast.LENGTH_LONG).show()
