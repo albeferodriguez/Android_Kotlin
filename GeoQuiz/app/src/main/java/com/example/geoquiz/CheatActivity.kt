@@ -1,15 +1,18 @@
 package com.example.geoquiz
 
+import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.ActionMenuView
 import android.widget.Button
 import android.widget.TextView
 import org.w3c.dom.Text
 import java.security.AccessControlContext
 
 private const val  EXTRA_ANSWER_IS_TRUE= "com.example.geoquiz.answer_is_true"
+private const val EXTRA_ANSWER_SHOWN = "com.example.geoquiz.answer_shown"
 
 class CheatActivity : AppCompatActivity() {
 
@@ -32,7 +35,15 @@ class CheatActivity : AppCompatActivity() {
                 else -> R.string.false_button
             }
             answerTV.setText(answerText)
+            setAnswerShownResult(true)
         }
+    }
+
+    private fun setAnswerShownResult(isAnswerShown: Boolean){
+        val data = Intent().apply {
+            putExtra(EXTRA_ANSWER_SHOWN, isAnswerShown)
+        }
+        setResult(Activity.RESULT_OK, data)
     }
 
     companion object{

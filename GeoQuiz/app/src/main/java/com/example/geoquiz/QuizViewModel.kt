@@ -7,6 +7,8 @@ private const val TAG =" QuizViewModel"
 
 class QuizViewModel: ViewModel() {
 
+    var isCheater = false
+
     init {
         Log.d(TAG, "ViewModel instance created")
     }
