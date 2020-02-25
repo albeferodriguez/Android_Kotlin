@@ -9,4 +9,9 @@
     <string name="question_Spain">Berlin is the capital of Spain</string>
     <string name="question_Norway">Oslo is the capital of Norway</string>
     <string name="question_Russia">Moscow is the capital of Russia</string>
+    <string name="cheating_button">Cheat!</string>
+    <string name="warning_text">Are you sure you want to do this?</string>
+    <string name="incorrect_toast">Incorrect!</string>
+    <string name="show_answer_button">Show answer button</string>
+    <string name="judgment_toast">Cheating is wrong</string>
 </resources>

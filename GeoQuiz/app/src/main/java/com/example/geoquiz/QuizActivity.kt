@@ -1,5 +1,6 @@
 package com.example.geoquiz
 
+import android.content.Intent
 import android.media.Image
 import android.opengl.Visibility
 import androidx.appcompat.app.AppCompatActivity
@@ -21,6 +22,7 @@ class QuizActivity : AppCompatActivity() {
     private lateinit var question: TextView
     private lateinit var leftButton: ImageButton
     private lateinit var rightButton: ImageButton
+    private lateinit var cheatButton: Button
 
     val provider: ViewModelProvider = ViewModelProvider(this)
 
@@ -54,6 +56,12 @@ class QuizActivity : AppCompatActivity() {
         rightButton.setOnClickListener {
             quizViewModel.currentIndex
             UpdateQuestion()
+        }
+
+        cheatButton.setOnClickListener{
+            val answerIsTrue = quizViewModel.currentQuestionAnswer
+            val intent = CheatActivity.newIntent(this, answerIsTrue)
+            startActivity(intent)
         }
         UpdateQuestion()
     }
