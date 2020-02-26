@@ -38,6 +38,7 @@ class CrimeListFragment: Fragment(){
         crimeRecyclerView = view.findViewById(R.id.crime_recycler_view) as RecyclerView
         crimeRecyclerView.layoutManager = LinearLayoutManager(context)
 
+        updateUI()
         return view
     }
 
