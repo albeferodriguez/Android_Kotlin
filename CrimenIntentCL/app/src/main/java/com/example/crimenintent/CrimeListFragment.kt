@@ -53,9 +53,9 @@ class CrimeListFragment: Fragment(){
     private inner class CrimeHolder(view: View): RecyclerView.ViewHolder(view), View.OnClickListener{
 
         private lateinit var crime: Crime
-        private val titleTextView:TextView = itemView.findViewById<TextView>(R.id.crime_title)
-        private val dateTextView:TextView = itemView.findViewById<TextView>(R.id.crime_date)
-        private val solvedImageView: ImageView = itemView.findViewById(R.id.crime_solved)
+        private val titleTextView:TextView = itemView.findViewById(R.id.crime_title)
+        private val dateTextView:TextView = itemView.findViewById(R.id.crime_date)
+        private val solvedImageView: ImageView = itemView.findViewById(R.id.imageView)
 
         init {
             itemView.setOnClickListener(this)
