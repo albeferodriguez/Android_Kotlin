@@ -1,6 +1,7 @@
-package com.example.crimenintent.database
+package com.example.crimenintent
 
 import android.app.Application
+import com.example.crimenintent.CrimeRepository
 
 class CriminalIntentApplication: Application() {
 
