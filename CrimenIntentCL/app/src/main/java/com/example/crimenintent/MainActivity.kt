@@ -29,6 +29,7 @@ class MainActivity : AppCompatActivity(),CrimeListFragment.Callbacks{
         val fragment = CrimeFragment()
         supportFragmentManager
             .beginTransaction()
+            .addToBackStack(null)
             .replace(R.id.fragment_container, fragment)
             .commit()
     }
